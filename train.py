@@ -40,6 +40,8 @@ def train(args: argparse.Namespace):
     # Instantiate trainer
     training_args = GRPOConfig(
         report_to="wandb" if args.log else "none",
+        use_vllm=args.use_vllm,
+        vllm_mode="colocate",
         bf16=True,
     )
 
@@ -57,6 +59,9 @@ def train(args: argparse.Namespace):
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--log", action="store_true", help="Enable wandb logging")
+    parser.add_argument(
+        "--use_vllm", action="store_true", help="Use vLLM for generation"
+    )
     return parser.parse_args()
 
 
