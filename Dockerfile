@@ -17,4 +17,4 @@ VOLUME ["/workspace/checkpoints", "/workspace/samples", "/workspace/wandb"]
 
 # Run the training script and then kill the pod
 # We use `accelerate launch` to handle distributed training
-CMD ["/bin/bash", "-c", "uv run accelerate launch --config_file accelerate_config.yaml train.py --log --use_vllm && runpodctl stop pod $RUNPOD_POD_ID"]
+CMD ["/bin/bash", "./run.sh"]
